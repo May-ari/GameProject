@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SocialPlatforms;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -18,8 +19,17 @@ public class PlayerMovement : MonoBehaviour
     }
     private void Move()
     {
-        transform.Translate(direction * speed * Time.deltaTime);
-        SetAnimatorMovement(direction);
+        direction.Normalize();
+        transform.Translate(speed * Time.deltaTime * direction);
+        
+        if (direction.x != 0 || direction.y != 0) 
+        {
+           SetAnimatorMovement(direction);
+        }
+        else
+        {
+            animator.SetLayerWeight(1, 0);
+        }
     }
     private void TakeInput()
     {
@@ -43,9 +53,9 @@ public class PlayerMovement : MonoBehaviour
     }
     private void SetAnimatorMovement(Vector2 direction)
     {
+        animator.SetLayerWeight(1, 1);
         animator.SetFloat("X_Direction", direction.x);
         animator.SetFloat("Y_Direction", direction.y);
-        print(animator.GetFloat("X_Direction")); //CAN BE DELETED (Just for info in editor)
-        print(animator.GetFloat("Y_Direction")); //CAN BE DELETED (Just for info in editor)
+        
     }
 }
