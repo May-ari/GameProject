@@ -28,7 +28,6 @@ public class MainMenu : MonoBehaviour
     }
     public void ExitGame()
     {
-        Debug.Log("Quitting"); //CAN BE DELETED (Just for info in editor)
         Application.Quit();
     }
 

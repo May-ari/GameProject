@@ -6,11 +6,11 @@ using UnityEngine.SocialPlatforms;
 public class PlayerMovement : MonoBehaviour
 {
    public float speed;
-   private Vector2 direction;
-   private Animator animator;
+   private Vector2 dir;
+   private Animator anim;
     void Start()
     {
-        animator = GetComponent<Animator>();
+        anim = GetComponent<Animator>();
     }
     private void Update()
     {
@@ -19,43 +19,43 @@ public class PlayerMovement : MonoBehaviour
     }
     private void Move()
     {
-        direction.Normalize();
-        transform.Translate(speed * Time.deltaTime * direction);
+        dir.Normalize();
+        transform.Translate(speed * Time.deltaTime * dir);
         
-        if (direction.x != 0 || direction.y != 0) 
+        if (dir.x != 0 || dir.y != 0) 
         {
-           SetAnimatorMovement(direction);
+           SetAnimatorMovement(dir);
         }
         else
         {
-            animator.SetLayerWeight(1, 0);
+            anim.SetLayerWeight(1, 0);
         }
     }
     private void TakeInput()
     {
-        direction = Vector2.zero;
+        dir = Vector2.zero;
         if(Input.GetKey(KeyCode.W)) 
             {
-            direction += Vector2.up;
+            dir += Vector2.up;
             }
         if(Input.GetKey(KeyCode.A)) 
             {
-            direction += Vector2.left;
+            dir += Vector2.left;
             }
         if(Input.GetKey(KeyCode.S)) 
             {
-            direction += Vector2.down;
+            dir += Vector2.down;
             }
         if(Input.GetKey(KeyCode.D)) 
             {
-            direction += Vector2.right;
+            dir += Vector2.right;
             }
     }
     private void SetAnimatorMovement(Vector2 direction)
     {
-        animator.SetLayerWeight(1, 1);
-        animator.SetFloat("X_Direction", direction.x);
-        animator.SetFloat("Y_Direction", direction.y);
+        anim.SetLayerWeight(1, 1);
+        anim.SetFloat("X_Direction", dir.x);
+        anim.SetFloat("Y_Direction", dir.y);
         
     }
 }
