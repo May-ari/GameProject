@@ -30,11 +30,12 @@
 - [ ] Code for Procedural World Generation
 
 
-**Dana Nassyr:**                                                      > [!NOTE]
-- [ ] Main menu design (including Settings and Credits sections)      > Help Sanjar with his work if everything is done.
+**Dana Nassyr:**      
+- [ ] Main menu design (including Settings and Credits sections)     
 - [ ] Player's UI design
 - [ ] Pause menu design
-
+ > [!NOTE]
+ > Dana pls help Sanjar with his work if you have done everything.
 
 **Sanjar Fuzaylov:**
 - [ ] Player's sprite (all 4 directions)
