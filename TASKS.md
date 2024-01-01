@@ -1,6 +1,7 @@
 > [!IMPORTANT]
 > *Commit all changes to YOUR branch, and only when you are sure there are no errors!*
-> *If one or more tasks are done, merge your branch to the DEV branch, and a new task.*
+> 
+> *If one or more tasks are done, merge your branch to the DEV branch, and start a new task.*
 
 **TASKS:**
 
