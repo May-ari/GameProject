@@ -18,6 +18,7 @@
 - [ ] Death mechanic
 - [ ] \(Optional) Looting Mechanic
 
+
 **Leanila Kavalevich:**
 - [x] Code for Camera smooth following
 - [x] Code for buttons on the Main Menu
@@ -28,12 +29,12 @@
 - [ ] \(Optional) Code for looting mechanic
 - [ ] Code for Procedural World Generation
 
-**Dana Nassyr:**
-- [ ] Main menu design (including Settings and Credits sections) 
+
+**Dana Nassyr:**                                                      > [!NOTE]
+- [ ] Main menu design (including Settings and Credits sections)      > Help Sanjar with his work if everything is done.
 - [ ] Player's UI design
 - [ ] Pause menu design
-> [!NOTE]
-> Help Sanjar with his work if everything is done.
+
 
 **Sanjar Fuzaylov:**
 - [ ] Player's sprite (all 4 directions)
@@ -47,4 +48,3 @@
 - [ ] Animation for Enemy movement, attack(melee), damage(to enemy), death
 - [ ] Water animation
 - [ ] \(Optional) Animation for looting mechanic
-
