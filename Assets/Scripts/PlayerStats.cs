@@ -12,7 +12,7 @@ public class PlayerStats : MonoBehaviour
 
     private void Awake()
     {
-        if ( playerStats != null )
+        if (playerStats != null)
         {
             Destroy(playerStats);
         }

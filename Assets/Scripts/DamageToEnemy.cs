@@ -9,14 +9,15 @@ public class DamageToEnemy : MonoBehaviour
 
     public GameObject healthBar;
     public Slider healthBarSlider;
+
     void Start()
     {
         health = maxHealth;
     }
-    public void DealDamage(float Damage)
+    public void DealDamage(float damage)
     {
         healthBar.SetActive(true);
-        health -= Damage;
+        health -= damage;
         CheckDeath();
         healthBarSlider.value = CalculateHealthPercentage();
     }
@@ -30,14 +31,14 @@ public class DamageToEnemy : MonoBehaviour
     
     private void CheckOverHeal()
     {
-        if(health > maxHealth)
+        if (health > maxHealth)
         {
             health = maxHealth;
         }
     }
     private void CheckDeath()
     {
-        if(health <= 0)
+        if (health <= 0)
         {
             Destroy(gameObject);
         }
