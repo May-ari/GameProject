@@ -1,33 +1,49 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 public class DamageToEnemy : MonoBehaviour
 {
+    public float health;
     public float maxHealth;
-    public float Health;
+
+    public GameObject healthBar;
+    public Slider healthBarSlider;
     void Start()
     {
-        Health = maxHealth;
+        health = maxHealth;
     }
     public void DealDamage(float Damage)
     {
-        Health -= Damage;
+        healthBar.SetActive(true);
+        health -= Damage;
         CheckDeath();
+        healthBarSlider.value = CalculateHealthPercentage();
+    }
+
+    public void HealCharacter(float heal)
+    {
+        health += heal;
+        CheckOverHeal();
+        healthBarSlider.value = CalculateHealthPercentage();
     }
     
     private void CheckOverHeal()
     {
-        if(Health > maxHealth)
+        if(health > maxHealth)
         {
-            Health = maxHealth;
+            health = maxHealth;
         }
     }
     private void CheckDeath()
     {
-        if(Health <= 0)
+        if(health <= 0)
         {
             Destroy(gameObject);
         }
+    }
+    private float CalculateHealthPercentage()
+    {
+        return (health / maxHealth);
     }
 }
