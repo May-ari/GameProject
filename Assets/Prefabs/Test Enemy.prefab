@@ -67,7 +67,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6168183133439693787}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -85,7 +85,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!212 &6693749768263761399
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -172,7 +172,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0.000004146248}
+  m_Offset: {x: 0, y: -0.06544245}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -182,7 +182,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.1, y: 0.17028919}
+  m_Size: {x: 0.1, y: 0.039396003}
   m_EdgeRadius: 0
 --- !u!114 &2680804388351044982
 MonoBehaviour:
@@ -210,11 +210,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77902a9d07b58684bb11946da4288b85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0.4
-  checkRadius: 1
-  attackRadius: 0.5
+  speed: 0.3
+  checkRadius: 0.5
+  attackRadius: 0.3
   shouldRotate: 1
   whatIsPlayer:
     serializedVersion: 2
     m_Bits: 8
-  dir: {x: 0, y: 0, z: 0}

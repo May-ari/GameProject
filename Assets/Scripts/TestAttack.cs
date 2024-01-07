@@ -8,6 +8,7 @@ public class TestAttack : MonoBehaviour
     public float minDamage;
     public float maxDamage;
     public float projectileForce;
+    
 
     private void Update()
     {
@@ -21,4 +22,5 @@ public class TestAttack : MonoBehaviour
             spell.GetComponent<TestProjectile>().damage = Random.Range(minDamage, maxDamage);
         }
     }
+    
 }
