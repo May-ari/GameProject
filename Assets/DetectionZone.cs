@@ -10,7 +10,7 @@ public class DetectionZone : MonoBehaviour
     
     private void OnTriggerEnter2D(Collider2D collider)
     {
-        if(collider.gameObject.tag == tagTarget)
+        if (collider.gameObject.tag == tagTarget)
         {
             detectedObjs.Add(collider);
         }
@@ -18,7 +18,10 @@ public class DetectionZone : MonoBehaviour
     }
     private void OnTriggerExit2D(Collider2D collider)
     {
-        detectedObjs.Remove(collider);
+        if (collider.gameObject.tag == tagTarget)
+        {
+            detectedObjs.Remove(collider);
+        }
     }
 
 }

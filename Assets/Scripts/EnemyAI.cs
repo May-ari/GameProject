@@ -7,7 +7,8 @@ using UnityEngine.Events;
 
 public class EnemyAI : MonoBehaviour
 {
-    public float speed;
+
+    /*public float speed;
     public float checkRadius;
     public float attackRadius;
 
@@ -61,7 +62,7 @@ public class EnemyAI : MonoBehaviour
     private void MoveCharacter(Vector2 dir)
     {
         rb.MovePosition((Vector2)transform.position + (dir * speed * Time.deltaTime));
-    }
+    }*/
     /*public UnityEvent<Vector2> OnMovementInput, OnPointerInput;
     public UnityEvent OnAttack;
 

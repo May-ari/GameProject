@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -9,15 +10,19 @@ public class PlayerController : MonoBehaviour
     {
         IDLE,
         RUN,
-        ATTACK
+        ATTACK,
+        DEATH
     }
     PlayerStates CurrentState
     {
         set
+    {
+        if (isAlive)
         {
             if (stateLock == false)
             {
                 currentState = value;
+
                 switch (currentState)
                 {
                     case PlayerStates.IDLE:
@@ -35,20 +40,32 @@ public class PlayerController : MonoBehaviour
                         stateLock = true;
                         canMove = false;
                         break;
+
+                    case PlayerStates.DEATH:
+                        animator.Play("DEATH");
+                        isAlive = false;
+                        canMove = false;
+                        break;
+                    }
                 }
             }
         }
     }
-    public float moveSpeed = 1f;
-    public float collisionOffset = 0.05f;
-    public ContactFilter2D movementFilter;
+    public float moveSpeed = 150f;
+    public float maxSpeed = 2.2f;
+    public float idleFriction = 0.9f;
 
-    Vector2 movementInput = Vector2.zero;
-    SpriteRenderer spriteRenderer;
     Rigidbody2D rb;
     Animator animator;
+    SpriteRenderer spriteRenderer;
+    Vector2 moveInput = Vector2.zero;
+
+    public GameObject swordHitbox;
+    Collider2D swordCollider;
+    
     PlayerStates currentState;
 
+    bool isAlive = true;
     bool stateLock = false;
     bool canMove = true;
     
@@ -59,80 +76,56 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        swordCollider = swordHitbox.GetComponent<Collider2D>();
     }
     private void FixedUpdate()
     {
-        if (movementInput != Vector2.zero)
+        if (canMove && moveInput != Vector2.zero)
         {
-            bool success = TryMove(movementInput);
+            rb.velocity = Vector2.ClampMagnitude(rb.velocity + (moveInput * moveSpeed * Time.deltaTime), maxSpeed);
 
-            if (!success)
-            {
-                success = TryMove(new Vector2(movementInput.x, 0));    
+            if (moveInput.x > 0)
+            {  
+                spriteRenderer.flipX = false; 
+                gameObject.BroadcastMessage("IsFacingRight", true);
+                CurrentState = PlayerStates.RUN;
             }
-            if(!success)
-            {
-                success = TryMove(new Vector2(0, movementInput.y));
+            else if (moveInput.x < 0)
+            {  
+                spriteRenderer.flipX = true;
+                gameObject.BroadcastMessage("IsFacingRight", false);
+                CurrentState = PlayerStates.RUN;
             }
-           // animator.SetBool("isMoving", success);
-        } 
-        //else
-        //{
-        //    animator.SetBool("isMoving", false);
-        //}
-
-        
-    }
-
-    private bool TryMove(Vector2 direction)
-    {
-        if (direction != Vector2.zero)
-        {
-        int count = rb.Cast(
-                direction, 
-                movementFilter, 
-                castCollisions, 
-                moveSpeed * Time.fixedDeltaTime + collisionOffset);
-
-            if (count == 0) 
-                {
-                rb.MovePosition(rb.position + direction * moveSpeed * Time.fixedDeltaTime);
-                return true;
-                } else {
-                return false;
-                }
-        } else {
-          return false;
+            else if (moveInput.y < 0 || moveInput.y > 0)
+            {     
+                CurrentState = PlayerStates.RUN;
             }
+            
+        UpdateAnimatorParameters();
         }
-    
-    void OnMove(InputValue movementValue)
-    {
-        movementInput = movementValue.Get<Vector2>();
-        //Update Animator for sprite direction
-        if (canMove && movementInput != Vector2.zero)
+        else
         {
-            CurrentState = PlayerStates.RUN;
-            animator.SetFloat("xMove", movementInput.x);
-            animator.SetFloat("yMove", movementInput.y);
-        
-        //Set facing left or right
-        if (movementInput.x < 0)
-        {
-            spriteRenderer.flipX = true;
-        }
-        else if (movementInput.x > 0)
-        {
-            spriteRenderer.flipX = false;
-        }
-        }else{
+            rb.velocity = Vector2.Lerp(rb.velocity, Vector2.zero, idleFriction);
             CurrentState = PlayerStates.IDLE;
-        }
+        }  
     }
+
+    void OnMove(InputValue value)
+    {
+        moveInput = value.Get<Vector2>(); 
+    }
+
+    void UpdateAnimatorParameters()
+    {
+        animator.SetFloat("xMove", moveInput.x);
+        animator.SetFloat("yMove", moveInput.y);
+    }
+
     void OnFire()
     {
         CurrentState = PlayerStates.ATTACK;
     }
+
     void OnAttackFinished()
     {
         stateLock = false;
