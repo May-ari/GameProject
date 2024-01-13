@@ -330,7 +330,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   swordDamage: 1
-  knockbackForce: 7
+  knockbackForce: 3
   swordCollider: {fileID: 4632047864349901655}
   faceRight: {x: 0.15, y: -0.024, z: 0}
   faceLeft: {x: -0.15, y: -0.024, z: 0}
