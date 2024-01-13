@@ -9,6 +9,7 @@ public class GameController : MonoBehaviour
 {
     [SerializeField] private PlayerController player = null;
     [SerializeField] private GameObject GameOverScreen;
+    
 
     void Awake()
     {
@@ -17,7 +18,7 @@ public class GameController : MonoBehaviour
 
     void Update()
     {
-        if (player==null)
+        if (player == null)
         {
             GameOverScreen.SetActive(true);
         }

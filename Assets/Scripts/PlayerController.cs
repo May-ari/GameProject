@@ -13,12 +13,12 @@ public class PlayerController : MonoBehaviour
         ATTACK,
         DEATH
     }
+
     PlayerStates CurrentState
     {
         set
     {
-        if (isAlive)
-        {
+       
             if (stateLock == false)
             {
                 currentState = value;
@@ -29,7 +29,7 @@ public class PlayerController : MonoBehaviour
                         animator.Play("IDLE");
                         canMove = true;
                         break;
-
+                                    
                     case PlayerStates.RUN:
                         animator.Play("RUN");
                         canMove = true;
@@ -47,8 +47,8 @@ public class PlayerController : MonoBehaviour
                         canMove = false;
                         break;
                     }
-                }
-            }
+             }
+            
         }
     }
     public float moveSpeed = 150f;
@@ -61,23 +61,20 @@ public class PlayerController : MonoBehaviour
     Vector2 moveInput = Vector2.zero;
 
     public GameObject swordHitbox;
-    Collider2D swordCollider;
     
     PlayerStates currentState;
 
-    bool isAlive = true;
+    public bool isAlive = true;
     bool stateLock = false;
     bool canMove = true;
-    
-    List<RaycastHit2D> castCollisions = new List<RaycastHit2D>();
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
-        swordCollider = swordHitbox.GetComponent<Collider2D>();
     }
+
     private void FixedUpdate()
     {
         if (canMove && moveInput != Vector2.zero)
@@ -100,14 +97,15 @@ public class PlayerController : MonoBehaviour
             {     
                 CurrentState = PlayerStates.RUN;
             }
-            
-        UpdateAnimatorParameters();
+          UpdateAnimatorParameters();
         }
+        
         else
         {
             rb.velocity = Vector2.Lerp(rb.velocity, Vector2.zero, idleFriction);
             CurrentState = PlayerStates.IDLE;
-        }  
+        }
+       
     }
 
     void OnMove(InputValue value)
@@ -131,4 +129,6 @@ public class PlayerController : MonoBehaviour
         stateLock = false;
         CurrentState = PlayerStates.IDLE;
     }
+   
+
 }

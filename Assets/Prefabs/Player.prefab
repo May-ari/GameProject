@@ -101,7 +101,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 0
   m_Sprite: {fileID: -1356057289, guid: 0dfa37e33ad990543ad36fb4b61b59df, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -221,21 +221,8 @@ MonoBehaviour:
   moveSpeed: 60
   maxSpeed: 1
   idleFriction: 0.9
-  movementFilter:
-    useTriggers: 0
-    useLayerMask: 0
-    useDepth: 0
-    useOutsideDepth: 0
-    useNormalAngle: 0
-    useOutsideNormalAngle: 0
-    layerMask:
-      serializedVersion: 2
-      m_Bits: 1
-    minDepth: 0
-    maxDepth: 0
-    minNormalAngle: 0
-    maxNormalAngle: 0
   swordHitbox: {fileID: 7078415336808237934}
+  isAlive: 1
 --- !u!114 &76617622631781305
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -249,7 +236,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   disableSimulation: 1
-  _health: 3
+  _health: 1
   _targetable: 1
 --- !u!1 &7078415336808237934
 GameObject:

@@ -9,14 +9,13 @@ public class DanageableCharacter : MonoBehaviour, IDamageable
     Animator animator;
     Rigidbody2D rb;
     Collider2D physicsCollider;
-    
     bool isAlive = true;
     public float Health
     {
         set
         {  
             if (value < _health)
-            {
+           {
                 animator.SetTrigger("hit");;
             }
             _health = value;
