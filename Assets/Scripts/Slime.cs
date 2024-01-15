@@ -11,12 +11,15 @@ public class Slime : MonoBehaviour
     public float knockbackForce = 15f;
     public float moveSpeed = 100f;
 
+    public Transform player;
     public DetectionZone detectionZone;
     private Rigidbody2D rb;
+    private SpriteRenderer spriteRenderer;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        this.spriteRenderer = this.GetComponent<SpriteRenderer>();
     }
 
     private void FixedUpdate()
@@ -27,6 +30,7 @@ public class Slime : MonoBehaviour
         {
             Vector2 direction = (detectedObject0.transform.position - transform.position).normalized;
             rb.AddForce (direction * moveSpeed * Time.deltaTime);
+            this.spriteRenderer.flipX = player.transform.position.x < this.transform.position.x;
         }
     }
 
