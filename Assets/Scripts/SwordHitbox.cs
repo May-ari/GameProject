@@ -9,6 +9,8 @@ public class SwordHitbox : MonoBehaviour
     public Collider2D swordCollider;
     public Vector3 faceRight = new Vector3(0.15f, -0.024f, 0);
     public Vector3 faceLeft = new Vector3(-0.15f, -0.024f, 0);
+    public Vector3 faceUp = new Vector3(0.03f, 0.05f, 0);
+    public Vector3 faceDown = new Vector3(0.03f, -0.1f, 0);
     void Start()
     {
         if (swordCollider == null)
@@ -38,6 +40,20 @@ public class SwordHitbox : MonoBehaviour
         else
         {
             gameObject.transform.localPosition = faceLeft;
+        }
+    }
+     void IsFacingUp(bool isFacingUp)
+    {
+        if(isFacingUp)
+        {
+            gameObject.transform.localPosition = faceUp;
+        }
+    }
+    void IsFacingDown(bool isFacingDown)
+    {
+        if(isFacingDown)
+        {
+            gameObject.transform.localPosition = faceDown;
         }
     }
     

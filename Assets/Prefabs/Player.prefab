@@ -334,3 +334,5 @@ MonoBehaviour:
   swordCollider: {fileID: 4632047864349901655}
   faceRight: {x: 0.15, y: -0.024, z: 0}
   faceLeft: {x: -0.15, y: -0.024, z: 0}
+  faceUp: {x: 0.03, y: -0.1, z: 0}
+  faceDown: {x: 0.03, y: -0.05, z: 0}

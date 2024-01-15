@@ -85,8 +85,14 @@ public class PlayerController : MonoBehaviour
                 gameObject.BroadcastMessage("IsFacingRight", false);
                 CurrentState = PlayerStates.RUN;
             }
-            else if (moveInput.y < 0 || moveInput.y > 0)
+            else if (moveInput.y < 0)
             {     
+                gameObject.BroadcastMessage("IsFacingUp", true);
+                CurrentState = PlayerStates.RUN;
+            }
+            else if (moveInput.y > 0)
+            {
+                gameObject.BroadcastMessage("IsFacingDown", true);
                 CurrentState = PlayerStates.RUN;
             }
           UpdateAnimatorParameters();
