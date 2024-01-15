@@ -8,15 +8,7 @@ public class MainMenu : MonoBehaviour
     public GameObject settingsPanel;
     public void StartGame()
     {
-        SceneManager.LoadScene(1);
-    }
-    public void OpenSettings()
-    {
-        settingsPanel.SetActive(true);
-    }
-    public void CloseSettings()
-    {
-        settingsPanel.SetActive(false);
+        SceneManager.LoadScene("Game");
     }
     public void OpenCredits()
     {

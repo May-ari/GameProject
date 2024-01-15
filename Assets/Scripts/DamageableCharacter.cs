@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using static PlayerController;
 
 public class DanageableCharacter : MonoBehaviour, IDamageable
 {
@@ -23,7 +20,6 @@ public class DanageableCharacter : MonoBehaviour, IDamageable
             {
                 animator.SetBool("isAlive", false);
                 Targetable = false;
-                animator.Play("DEATH");
             }
         }
         get
@@ -32,15 +28,23 @@ public class DanageableCharacter : MonoBehaviour, IDamageable
         }
     }
 
-    public bool Targetable { get { return _targetable; } 
-        set {
+    public bool Targetable 
+    { 
+        get 
+        { 
+            return _targetable; 
+        } 
+        set 
+        {
             _targetable = value;
-            if (disableSimulation)
-            {
+
+           if (disableSimulation)
+           {
                 rb.simulated = false;
-            }
-            physicsCollider.enabled = value;
-            } }
+           }
+          physicsCollider.enabled = value;
+        } 
+    }
 
     public float _health = 3;
     public bool _targetable = true;
@@ -52,12 +56,10 @@ public class DanageableCharacter : MonoBehaviour, IDamageable
         physicsCollider = GetComponent<Collider2D>();
     }
    
-
     public void OnHit(float damage, Vector2 knockback)
     {
         Health -= damage;
         rb.AddForce(knockback, ForceMode2D.Impulse);
-        Debug.Log("Force" + knockback);
     }
 
     public void OnHit(float damage)
@@ -69,5 +71,4 @@ public class DanageableCharacter : MonoBehaviour, IDamageable
     {
         Destroy(gameObject);
     }
-   
 }

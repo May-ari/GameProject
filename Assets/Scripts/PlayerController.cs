@@ -10,14 +10,13 @@ public class PlayerController : MonoBehaviour
     {
         IDLE,
         RUN,
-        ATTACK,
-        DEATH
+        ATTACK
     }
 
     PlayerStates CurrentState
     {
         set
-    {
+        {
        
             if (stateLock == false)
             {
@@ -40,15 +39,8 @@ public class PlayerController : MonoBehaviour
                         stateLock = true;
                         canMove = false;
                         break;
-
-                    case PlayerStates.DEATH:
-                        animator.Play("DEATH");
-                        isAlive = false;
-                        canMove = false;
-                        break;
-                    }
-             }
-            
+                }
+            } 
         }
     }
     public float moveSpeed = 150f;
@@ -104,8 +96,7 @@ public class PlayerController : MonoBehaviour
         {
             rb.velocity = Vector2.Lerp(rb.velocity, Vector2.zero, idleFriction);
             CurrentState = PlayerStates.IDLE;
-        }
-       
+        }  
     }
 
     void OnMove(InputValue value)
@@ -129,6 +120,4 @@ public class PlayerController : MonoBehaviour
         stateLock = false;
         CurrentState = PlayerStates.IDLE;
     }
-   
-
 }

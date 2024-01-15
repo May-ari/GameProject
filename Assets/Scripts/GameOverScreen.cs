@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.SocialPlatforms.Impl;
+using TMPro;
 
 public class GameOverScreen : MonoBehaviour
 {
-   public void RestartButton()
+    public void RestartButton()
     {
         SceneManager.LoadScene("Game");
     }
